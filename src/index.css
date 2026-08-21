@@ -28,3 +28,37 @@
   padding: 3px 10px;
   border-radius: 20px;
 }
+
+/* ===== AUTH PAGE ===== */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.auth-switch {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0 0 6px;
+}
+
+.auth-switch button {
+  background: none;
+  border: none;
+  color: var(--color-blue);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
