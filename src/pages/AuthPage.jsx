@@ -1,5 +1,6 @@
 import {useState, useContext} from "react"
 import {AuthContext } from "../context/AuthContext"
+import Logo from "../components/Logo"
 
 export default function AuthPage() {
     const {login, signup } = useContext (AuthContext);
@@ -16,6 +17,7 @@ export default function AuthPage() {
    if (logginIn) {
     return (
         <div className = "auth-page">
+            <Logo/>
             <form 
             className="auth-card card"
             onSubmit= {(e) => {
