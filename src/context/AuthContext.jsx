@@ -5,7 +5,8 @@ import {useNavigate} from "react-router-dom";
 const AuthContext = createContext();
 
 export default function AuthProvider ({children}) {
-    const [usee, setUser] = useState(null);
+
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -15,14 +16,13 @@ export default function AuthProvider ({children}) {
             const response = await api.post('/auth/login', body);
             if (response.status === 200){
                 setUser(response.data.user);
-                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('authtoken', response.data.token);
                 navigate("/events");
             }
         }catch (error) {
             console.log(error);
         }finally {
             setLoading(false);
-        }
         }
     }
 
@@ -53,7 +53,7 @@ export default function AuthProvider ({children}) {
         try {
             setLoading(true);
             
-            const response = await api.post ("/auth/verify");
+            const response = await api.get ("/auth/verify");
             console.log(response);
             if (response.status === 200) {
                 setUser (response.data.user)
@@ -85,4 +85,7 @@ export default function AuthProvider ({children}) {
             {children}
         </AuthContext.Provider>
     )
+
+}
+    
 export {AuthContext}

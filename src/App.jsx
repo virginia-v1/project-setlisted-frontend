@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/auth" element={<AuthPage/>} />
+      <Route path="/" element={<AuthPage/>} />
       <Route path="/events" element={<BrowseEventsPage/>} />
       <Route path="/my-list" element={<MyListPage/>}/>
       <Route path="/user" element={<UserPage/>}/>
