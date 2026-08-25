@@ -74,7 +74,7 @@ export default function AuthProvider ({children}) {
     }
 
     useEffect (() => {
-        const token = localStorage.getItem("authToken")
+        const token = localStorage.getItem("authtoken")
         if (token) {
             verify ()
         }

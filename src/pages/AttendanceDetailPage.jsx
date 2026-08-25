@@ -6,12 +6,12 @@ import api from '../api/axios'
 export default function AttendanceDetailPage() {
     const {id} = useParams()
     const navigate = useNavigate()
-    const [attendance, setAttendance] = useState(null)
+    const [attendances, setAttendance] = useState(null)
 
     useEffect(() => {
         const fetchAttendance = async() => {
             try{
-                const response = await api.get (`/attendance/${id}`)
+                const response = await api.get (`/attendances/${id}`)
                 setAttendance (response.data)
             }catch (error) {
                 console.loh(error)
@@ -25,7 +25,7 @@ export default function AttendanceDetailPage() {
         if(!confirmed) return
 
         try{
-            await api.delete(`/attendance/${id}`)
+            await api.delete(`/attendances/${id}`)
             navigate('/my-list')
         } catch (error){
             console.log (error)

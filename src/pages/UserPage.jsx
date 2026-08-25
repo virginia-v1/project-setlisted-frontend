@@ -9,7 +9,7 @@ export default function UserPage () {
     useEffect(() => {
         const fetchAttendance = async () => {
             try {
-                const response = await api.get('/attendance')
+                const response = await api.get('/attendances')
                 setAttendance(response.data)
             } catch (error){
                 console.log(error)
@@ -17,6 +17,8 @@ export default function UserPage () {
         }
         fetchAttendance()
     }, [])
+
+    if(!user) return <p className="user-page">loading</p>
 
     const attendedCount = attendance.filter((a) => a.status === 'attended').length
     const wishlistCount = attendance.filter((a) => a.status === 'wishlist').length

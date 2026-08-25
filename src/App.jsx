@@ -6,20 +6,29 @@ import MyListPage from './pages/MyListPage'
 import AttendanceDetailPage from './pages/AttendanceDetailPage'
 import EditAttendancePage from './pages/EditAttendancePage'
 import UserPage from './pages/UserPage'
+import Navbar from './components/Navbar'
+import EventDetailPage from './pages/EventDetailPage'
 import './App.css'
 
 function App() {
 
   return (
-    <Routes>
+    <>
+  
+    <Navbar/>
+  
+      <Routes>
       <Route path="/" element={<AuthPage/>} />
       <Route path="/events" element={<BrowseEventsPage/>} />
+      <Route path="/events/:id" element={<EventDetailPage/>}/>
       <Route path="/my-list" element={<MyListPage/>}/>
       <Route path="/user" element={<UserPage/>}/>
-      <Route path="/attendance/:id" element={<AttendanceDetailPage/>}/>
-      <Route path="/attendance/:id/edit" element={<EditAttendancePage/>}/>
+      <Route path="/attendances/:id" element={<AttendanceDetailPage/>}/>
+      <Route path="/attendances/:id/edit" element={<EditAttendancePage/>}/>
 
     </Routes>
+
+     </>
   )
 }
 

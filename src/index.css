@@ -180,3 +180,116 @@ body {
   font-weight: 500;
   margin: 0;
 }
+
+/* NAVBAR */
+
+.navbar {
+  background: white;
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-pill {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.nav-pill.active {
+  color: var(--color-blue);
+  background-color: var(--color-blue-light);
+}
+
+.navbar-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--color-blue);
+  color: var(--color-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.star-picker {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  font-size: 26px;
+  color: var(--color-border);
+  cursor: pointer;
+}
+
+.star.filled {
+  color: #D4A72C;
+}
+
+/* ===== EVENT DETAIL PAGE ===== */
+.event-detail-page {
+  padding: 2rem 1.5rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.event-detail-card {
+  overflow: hidden;
+}
+
+.event-detail-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.event-detail-name {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 10px 0 4px;
+}
+
+.event-detail-venue,
+.event-detail-date {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0 0 4px;
+}
+
+.event-detail-description {
+  font-size: 13px;
+  color: var(--color-ink);
+  line-height: 1.5;
+  margin: 12px 0 16px;
+}
+
+.event-detail-link {
+  font-size: 13px;
+  color: var(--color-blue);
+  display: inline-block;
+  margin: 10px 0 16px;
+  text-decoration: none;
+}
+
+.event-detail-actions {
+  display: flex;
+  gap: 8px;
+}

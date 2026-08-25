@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import api from '../api/axios'
+import {Link} from 'react-router-dom'
+
+
 
 export default function BrowseEventsPage() {
   const [events, setEvents] = useState([])
-  const [message, setMessage] = useState('')
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -18,34 +20,25 @@ export default function BrowseEventsPage() {
     fetchEvents()
   }, [])
 
-  const handleAdd = async (eventId) => {
-    try {
-      await api.post('/attendance', { event: eventId, status: 'wishlist' })
-      setMessage('Added to your list!')
-    } catch (error) {
-      setMessage(error.response?.data?.message || 'Could not add')
-    }
-  }
+
 
   return (
     <div className="events-page">
       <h1>Browse Events</h1>
-      {message && <p className="events-message">{message}</p>}
 
       <div className="events-grid">
-        {events.map((event) => (
-          <div key={event._id} className="card event-card">
-            <span className="tag">{event.genre}</span>
-            <p className="event-name">{event.artistName}</p>
-            <p className="event-details">
-              {event.venueCity}, {event.venueCountry}. {new Date(event.date).toLocaleDateString()}
+        {events.map((event)=>
+        <Link key={event._id} to={`/events/${event._id}`} className="card event-card">
+           <span className="tag">{event.genre}</span>
+           <p className="event-name">{event.artistName}</p>
+           <p className="event-details">
+            {event.venueCity}, {event.venueCountry} - {new Date (event.date).toLocaleDateString()}
             </p>
-            <button className="button-primary" onClick={() => handleAdd(event._id)}>
-              Add to my list
-            </button>
+            </Link>
+        )}
+        
           </div>
-        ))}
       </div>
-    </div>
   )
 }
+/* View option to be added to lead to "Event Card Page" where users can view the event details */

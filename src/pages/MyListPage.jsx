@@ -3,13 +3,13 @@ import {Link} from 'react-router-dom'
 import api from '../api/axios'
 
 export default function MyListPage () {
-    const [attendance, setAttendance] = useState([])
+    const [attendances, setAttendance] = useState([])
     const [filter, setFilter] = useState('attended')
 
     useEffect(() => {
         const fetchAttendance = async() => {
             try {
-                const response = await api.get ('/attendance')
+                const response = await api.get ('/attendances')
                 setAttendance(response.data)
 
             }catch (error) {
@@ -19,7 +19,7 @@ export default function MyListPage () {
         fetchAttendance()
     }, [])
 
-    const filtered = attendance.filter((a)=> a.status === filter)
+    const filtered = attendances.filter((a)=> a.status === filter)
 
     return (
         <div className="mylist-page">
@@ -29,13 +29,13 @@ export default function MyListPage () {
                 <span 
                 className={filter === 'attended' ? 'filter-pill active': 'filter-pill'}
                 onClick={() => setFilter ('attended')}>
-                    Attendend . {attendance.filter ((a) => a.status === 'attended').length}
+                    Attendend . {attendances.filter ((a) => a.status === 'attended').length}
                 </span>
 
                 <span
                 className={filter === 'wishlist' ? 'filter-pill active' : 'filter-pill'}
                 onClick={() => setFilter ('wishlist')}>
-                    Wishlist . {attendance.filter ((a) => a.status === 'wishlist').length}
+                    Wishlist . {attendances.filter ((a) => a.status === 'wishlist').length}
                 </span>
 
             </div>
@@ -45,7 +45,7 @@ export default function MyListPage () {
                 {filtered.map((attendance)=> (
                     <Link 
                     key={attendance._id}
-                    to={`/attendance/${attendance._id}`}
+                    to={`/attendances/${attendance._id}`}
                     className="card mylist-item"
                     >
                         <div>
