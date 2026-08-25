@@ -45,7 +45,17 @@ export default function BrowseEventsPage() {
 
   return (
     <div className="events-page">
-      <h1>Browse Events</h1>
+
+      <div className="intro-banner">
+  <div className="intro-banner-glow"></div>
+  <h1 className="intro-banner-title">Welcome to Setlisted 🎵</h1>
+  <p className="intro-banner-text">
+    Browse festivals and shows from around the world. Save what you're excited about,
+    mark what you've lived, and keep your live music history in one place.
+  </p>
+</div>
+
+      <h2>Browse Events</h2>
 
       <Searchbar search={search} setSearch={setSearch}/>
 

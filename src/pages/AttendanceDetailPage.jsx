@@ -1,6 +1,7 @@
 import {useState, useEffect } from 'react'
 import {useParams, useNavigate, Link } from 'react-router-dom'
 import api from '../api/axios'
+import Loading from '../components/Loading'
 
 
 export default function AttendanceDetailPage() {
@@ -39,17 +40,17 @@ export default function AttendanceDetailPage() {
         }
     }
 
-    if(!attendances) return <p className="detail-page">Loading</p>
+    if(!attendances) return <Loading/>
 
     return (
         <div className="detail-page">
-            <Link to="/my-list" className="details-back"> &larr; Back to my list </Link>
+            <Link to="/my-list" className="detail-back"> &larr; Back to my list </Link>
 
             <div className="card detail-card">
                 <span className="tag">{attendances.event?.genre} </span>
                 <p className="detail-name">{attendances.event?.artistName} </p>
                 <p className="detail-venue">
-                    {attendances.event?.venueCity}, {attendances.event?.venueCountry} .{''}
+                    {attendances.event?.venueCity}, {attendances.event?.venueCountry} - {' '}
                     {new Date(attendances.event?.date).toLocaleDateString()}
                 </p>
 
@@ -57,7 +58,7 @@ export default function AttendanceDetailPage() {
                     {attendances.status === 'attended' && (
                         <>
 
-                        <p className="detail-label" Your Rating ></p>
+                        <p className="detail-label">Your Rating</p>
                         <p className="detail-rating">
                             {attendances.rating ? '*'.repeat(attendances.rating): 'Not rated'}
                         </p>

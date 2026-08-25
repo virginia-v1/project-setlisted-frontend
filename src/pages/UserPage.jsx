@@ -1,6 +1,8 @@
 import {useState, useEffect, useContext} from 'react'
 import {AuthContext} from '../context/AuthContext'
 import api from '../api/axios'
+import Loading from '../components/Loading'
+
 
 export default function UserPage () {
     const {user, logout} = useContext(AuthContext)
@@ -18,32 +20,35 @@ export default function UserPage () {
         fetchAttendance()
     }, [])
 
-    if(!user) return <p className="user-page">loading</p>
+    if(!user) return <Loading/>
 
     const attendedCount = attendance.filter((a) => a.status === 'attended').length
     const wishlistCount = attendance.filter((a) => a.status === 'wishlist').length
 
     return (
-        <div className="user-page">
-            <div className="user-card">
-                <h1>Hello! Welcome {user.username} </h1>
-            
-            <div className="user-avatar">
-              <div className="user-stats">
-                <div className="stat-box stat-attended">
-                    <p className="stat-number"> {attendedCount}</p>
-                    <p className="stat-label">Attended</p>
-                </div>
-                <div className="stat-box stat-wishlist">
-                    <p className="stat-number"> {wishlistCount}</p>
-                    <p className="stat-label">Wishlist</p>
-                  </div>
-                 </div>
-                 <button className="button-signout" onClick={logout}>
-                    Sign Out
-                 </button>
-                </div>
-            </div>
+    <div className="user-page">
+      <div className="user-card">
+        <div className="user-avatar">
+          {user.username?.charAt(0).toUpperCase()}
         </div>
-    )
+
+        <h1>Hello! Welcome {user.username}</h1>
+
+        <div className="user-stats">
+          <div className="stat-box stat-attended">
+            <p className="stat-number">{attendedCount}</p>
+            <p className="stat-label">Attended</p>
+          </div>
+          <div className="stat-box stat-wishlist">
+            <p className="stat-number">{wishlistCount}</p>
+            <p className="stat-label">Wishlist</p>
+          </div>
+        </div>
+
+        <button className="button-signout" onClick={logout}>
+          Sign Out
+        </button>
+      </div>
+    </div>
+  )
 }

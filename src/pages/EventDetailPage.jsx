@@ -1,6 +1,7 @@
 import { useState, useEffect, createElement } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import api from '../api/axios'
+import Loading from '../components/Loading'
 
 export default function EventDetailPage() {
     const { id } = useParams()
@@ -36,7 +37,7 @@ export default function EventDetailPage() {
         }
     }
 
-    if(!event) return <p className="event-detail-page" >loading</p>
+    if(!event) return <Loading/>
 
     return (
 
