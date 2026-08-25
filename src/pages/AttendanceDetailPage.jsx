@@ -7,14 +7,21 @@ export default function AttendanceDetailPage() {
     const {id} = useParams()
     const navigate = useNavigate()
     const [attendances, setAttendance] = useState(null)
+    const [isEditing, setIsEditing] = useState(false)
+    const [formData, setFormData] = useState({notes: '', rating: ''})
+    const [saving, setSaving]= useState(false)
 
     useEffect(() => {
         const fetchAttendance = async() => {
             try{
                 const response = await api.get (`/attendances/${id}`)
                 setAttendance (response.data)
+                setFormData({
+                    notes:response.data.notes || '',
+                    rating:response.data.rating || '',
+                })
             }catch (error) {
-                console.loh(error)
+                console.log(error)
             }
         }
         fetchAttendance()
@@ -32,38 +39,38 @@ export default function AttendanceDetailPage() {
         }
     }
 
-    if(!attendance) return <p className="detail-page">Loading</p>
+    if(!attendances) return <p className="detail-page">Loading</p>
 
     return (
         <div className="detail-page">
             <Link to="/my-list" className="details-back"> &larr; Back to my list </Link>
 
             <div className="card detail-card">
-                <span className="tag">{attendance.event?.genre} </span>
-                <p className="detail-name">{attendance.event?.artistName} </p>
+                <span className="tag">{attendances.event?.genre} </span>
+                <p className="detail-name">{attendances.event?.artistName} </p>
                 <p className="detail-venue">
-                    {attendance.event?.venueCity}, {attendance.event?.venueCountry} .{''}
-                    {new Date(attendance.event?.date).toLocaleDateString()}
+                    {attendances.event?.venueCity}, {attendances.event?.venueCountry} .{''}
+                    {new Date(attendances.event?.date).toLocaleDateString()}
                 </p>
 
                 <div className="detail-info">
-                    {attendance.status === 'attended' && (
+                    {attendances.status === 'attended' && (
                         <>
 
                         <p className="detail-label" Your Rating ></p>
                         <p className="detail-rating">
-                            {attendance.rating ? '*'.repeat(attendance.rating): 'Not rated'}
+                            {attendances.rating ? '*'.repeat(attendances.rating): 'Not rated'}
                         </p>
                         
                         </>
                     )}
 
                     <p className="detail-label">Notes</p>
-                    <p className="detail-notes">{attendance.noted || 'No notes yet' } </p>
+                    <p className="detail-notes">{attendances.notes || 'No notes yet' } </p>
                 </div>
 
                 <div className="detail-actions">
-                    <Link to={`/attendance/${id}/edit`} className="button-secondary">
+                    <Link to={`/attendances/${id}/edit`} className="button-secondary">
                       Edit
                     </Link>
 
