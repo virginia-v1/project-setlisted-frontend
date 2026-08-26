@@ -11,7 +11,8 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div onClick={() => navigate('/events')} style={{ cursor: 'pointer' }}>
+      
+      <div className="logo-container" onClick={() => navigate('/events')} style={{ cursor: 'pointer' }}>
         <Logo />
       </div>
 

@@ -41,9 +41,8 @@ export default function AuthProvider ({children}) {
             }
         
         }catch (error) {
-            console.log(error.message);
+            return {success:false, error: error.response?.data?.message|| "Signup Failed"};
         }finally {
-            setLoading(false);
         }
     }
 
@@ -70,7 +69,7 @@ export default function AuthProvider ({children}) {
     const logout = () => {
         setUser(null)
         localStorage.clear()
-        navigate("/auth");
+        navigate("/");
     }
 
     useEffect (() => {
