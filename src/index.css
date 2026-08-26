@@ -225,12 +225,14 @@ body {
 }
 
 /* ===== LOGO ===== */
-.logo-image {
+.auth-logo-image {
   width: 220px;
   height: auto;
   display: block;
-  margin: 0 auto 8px;
+  margin: 8px auto 8px;
 }
+
+
 
 /* NAVBAR */
 
@@ -255,7 +257,7 @@ body {
 }
 
 .logo-image {
-  height: 60px;
+  height: 56px;
   width: auto;
   display: block;
 }

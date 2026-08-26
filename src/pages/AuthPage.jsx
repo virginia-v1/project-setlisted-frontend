@@ -5,6 +5,7 @@ import Logo from "../components/Logo"
 export default function AuthPage() {
     const {login, signup } = useContext (AuthContext);
     const [logginIn, setLogginIn] = useState(true);
+    const [error, setError] = useState ('');
     const [userInfo, setUserInfo] = useState({
         email: "",
         username: "",
@@ -17,7 +18,9 @@ export default function AuthPage() {
    if (logginIn) {
     return (
         <div className = "auth-page">
-            <Logo/>
+            <div className="auth-logo-image"> 
+                <Logo/>
+                </div>
             <form 
             className="auth-card card"
             onSubmit= {(e) => {
@@ -76,6 +79,11 @@ export default function AuthPage() {
                 setLogginIn,
                 setUserInfo,
             )
+            if (result && !result.success) {
+      setError(result.error)
+    } else {
+      setError('')
+    }
         }}
         >
             <p className="auth-switch">
@@ -114,6 +122,8 @@ export default function AuthPage() {
             </div>
 
             <button type="submit" className="button-primary">Signup</button>
+        
+              {error && <p className="signup-error">{error}</p>}
         </form>
     </div>
    )
