@@ -7,8 +7,8 @@ import Searchbar from '../components/Searchbar'
 
 export default function BrowseEventsPage() {
   const [events, setEvents] = useState([])
-  const [attendedEventIds, setAttendedEventIds] = useState (new Set())
-  const [search, setSearch] = useState ('')
+  const [attendedEventIds, setAttendedEventIds] = useState(new Set())
+  const [search, setSearch] = useState('')
   const [genreFilter, setGenreFilter] = useState('All')
 
   useEffect(() => {
@@ -37,10 +37,10 @@ export default function BrowseEventsPage() {
 
   const genres = ['All', ...new Set(events.map((e)=> e.genre))] 
 
-  const visibleEvents = events.
-  filter((event)=> !attendedEventIds.has(event._id))
-  .filter((event)=> genreFilter === 'All' || event.genre === genreFilter)
-  .filter((event)=> !search || event.artistName?.toLowerCase().includes(search.toLowerCase()))
+  const visibleEvents = events
+    .filter((event) => !attendedEventIds.has(event._id))
+    .filter((event) => genreFilter === 'All' || event.genre === genreFilter)
+    .filter((event) => !search || event.artistName?.toLowerCase().includes(search.toLowerCase()))
 
 
   return (
@@ -48,11 +48,29 @@ export default function BrowseEventsPage() {
 
       <div className="intro-banner">
   <div className="intro-banner-glow"></div>
-  <h1 className="intro-banner-title">Welcome to Setlisted 🎵</h1>
+  <h1 className="intro-banner-title">Welcome to Setlisted☀️</h1>
   <p className="intro-banner-text">
-    Browse festivals and shows from around the world. Save what you're excited about,
-    mark what you've lived, and keep your live music history in one place.
+    Setlisted is your personal concert and festival diary! Browse a growing catalogue
+    of live music from around the world, save the shows you're excited about, and look
+    back on the ones you've already lived — star ratings, notes, and all.
   </p>
+
+  <div className="how-it-works">
+  <div className="how-it-works-step">
+    <p className="how-it-works-num">1. Browse</p>
+    <p className="how-it-works-desc">Search or filter by genre to find events worldwide</p>
+  </div>
+
+  <div className="how-it-works-step">
+    <p className="how-it-works-num">2. Save</p>
+    <p className="how-it-works-desc">Add to your wishlist or mark as attended</p>
+  </div>
+
+  <div className="how-it-works-step">
+    <p className="how-it-works-num">3. Remember</p>
+    <p className="how-it-works-desc">Rate and add notes once you've been</p>
+  </div>
+</div>
 </div>
 
       <h2>Browse Events</h2>
@@ -71,18 +89,19 @@ export default function BrowseEventsPage() {
       </div>
 
       <div className="events-grid">
-        {visibleEvents.map((event)=>
+        {visibleEvents.map((event) =>
         <Link key={event._id} to={`/events/${event._id}`} className="card event-card">
            <span className="tag">{event.genre}</span>
            <p className="event-name">{event.artistName}</p>
            <p className="event-details">
-            {event.venueCity}, {event.venueCountry} - {new Date (event.date).toLocaleDateString()}
+            {event.venueCity}, {event.venueCountry} - {new Date(event.date).toLocaleDateString()}
             </p>
             </Link>
         )}
         
           </div>
-      </div>
-  )
+          </div>
+  
+      )
 }
 /* View option to be added to lead to "Event Card Page" where users can view the event details */
