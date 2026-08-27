@@ -1,16 +1,94 @@
-# React + Vite
+# Setlisted
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A personal concert and festival tracker. Browse a catalogue of live music from around the world, save the shows you're excited about, and keep a record of the ones you've already been to — with star ratings and comments.
 
-Currently, two official plugins are available:
+Built as a final project for the Ironhack Web Development Bootcamp.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Repos
 
-## React Compiler
+- **Backend:** [project-setlisted-backend](https://github.com/virginia-v1/project-setlisted-backend)
+- **Frontend:** [project-setlisted-frontend](https://github.com/virginia-v1/project-setlisted-frontend)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the Oxlint configuration
+**Backend:** Node.js, Express, MongoDB Atlas, Mongoose, JWT authentication, bcrypt
+**Frontend:** React (Vite), react-router-dom, plain CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Features
+
+- Sign up, log in, log out — with hashed passwords and JWT-based sessions
+- Browse a shared event catalogue, with search and genre filters
+- Add events to a personal wishlist, or mark them as attended
+- Rate and leave comments on events you've attended
+- Full CRUD on your personal attendance list — create, view, edit, delete
+
+## Data models
+
+- **User** — username, email, hashed password
+- **Event** — the shared catalogue (artist, venue, date, genre); read-only, seeded ahead of time
+- **Attendance** — a user's personal link to an event, storing status (attended/wishlist), rating, and comments; the model with full CRUD
+
+## API routes
+
+### Auth
+| Method | Route | Protected |
+|---|---|---|
+| POST | /api/auth/signup | No |
+| POST | /api/auth/login | No |
+| GET | /api/auth/verify | Yes |
+
+### Events
+| Method | Route | Protected |
+|---|---|---|
+| GET | /api/events | No |
+| GET | /api/events/:id | No |
+
+### Attendances
+| Method | Route | Protected |
+|---|---|---|
+| POST | /api/attendances | Yes |
+| GET | /api/attendances | Yes |
+| GET | /api/attendances/:id | Yes |
+| PUT | /api/attendances/:id | Yes |
+| DELETE | /api/attendances/:id | Yes |
+
+## Setup — backend
+
+```bash
+git clone https://github.com/virginia-v1/project-setlisted-backend.git
+cd project-setlisted-backend
+npm install
+```
+
+Create a `.env` file:
+```
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=3000
+```
+
+```bash
+node server.js
+```
+
+## Setup — frontend
+
+```bash
+git clone https://github.com/virginia-v1/project-setlisted-frontend.git
+cd project-setlisted-frontend
+npm install
+```
+
+Update the `baseURL` in `src/api/axios.js` to point to your running backend, then:
+```bash
+npm run dev
+```
+
+## Pages
+
+- Auth — combined login/signup
+- Browse Events — search and genre filtering
+- Event Detail — add to wishlist or mark as attended
+- My List — attended vs. wishlist views
+- Attendance Detail — view, edit, delete an entry
+- User — account stats and sign out
