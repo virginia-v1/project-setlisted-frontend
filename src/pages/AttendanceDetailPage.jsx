@@ -22,7 +22,7 @@ export default function AttendanceDetailPage() {
                     rating:response.data.rating || '',
                 })
             }catch (error) {
-                console.log(error)
+                setNotFound(true)
             }
         }
         fetchAttendance()
@@ -36,7 +36,7 @@ export default function AttendanceDetailPage() {
             await api.delete(`/attendances/${id}`)
             navigate('/my-list')
         } catch (error){
-            setNotFound (true)
+            console.log(error)
         }
     }
 
