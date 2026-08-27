@@ -19,7 +19,7 @@ export default function AuthPage() {
     return (
         <div className = "auth-page">
             <div className="auth-logo-image"> 
-                <Logo/>
+                <Logo auth/>
                 </div>
             <form 
             className="auth-card card"

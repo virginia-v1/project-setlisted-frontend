@@ -10,7 +10,7 @@ export default function AttendanceDetailPage() {
     const [attendances, setAttendance] = useState(null)
     const [isEditing, setIsEditing] = useState(false)
     const [formData, setFormData] = useState({notes: '', rating: ''})
-    const [saving, setSaving]= useState(false)
+    const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
         const fetchAttendance = async() => {
@@ -36,8 +36,17 @@ export default function AttendanceDetailPage() {
             await api.delete(`/attendances/${id}`)
             navigate('/my-list')
         } catch (error){
-            console.log (error)
+            setNotFound (true)
         }
+    }
+
+    if(notFound) {
+        return (
+            <div className="detail-page">
+                <Link to="/my-list" className="detail-back">&larr : Back to my list </Link>
+                <p> This event couldn't be found. </p>
+            </div>
+        )
     }
 
     if(!attendances) return <Loading/>

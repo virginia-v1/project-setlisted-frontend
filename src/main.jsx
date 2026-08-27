@@ -14,3 +14,5 @@ createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </StrictMode>
 )
+
+//odd that navbar works when strict mode is not there but lags with it
