@@ -246,6 +246,9 @@ body {
   align-items: center;
   max-width: 1100px;
   overflow: visible;
+  position: relative;
+  z-index: 10;
+  min-height: 60px;
 }
 
 .logo-container {

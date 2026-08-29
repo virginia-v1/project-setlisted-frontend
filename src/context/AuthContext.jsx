@@ -43,6 +43,7 @@ export default function AuthProvider ({children}) {
         }catch (error) {
             return {success:false, error: error.response?.data?.message|| "Signup Failed"};
         }finally {
+            setLoading(false);
         }
     }
 

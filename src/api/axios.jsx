@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create ({
-    baseURL : "http://localhost:3000/api"
+    baseURL : "https://setlisted.onrender.com"
 });
 
 
@@ -17,4 +17,5 @@ api.interceptors.request.use((config)=>{
 export default api;
  
 
-//not sure if it's complete
+//not sure if it's complete 
+//baseURL changed to onRender link 

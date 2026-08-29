@@ -44,6 +44,7 @@ export default function BrowseEventsPage() {
 
 
   return (
+    
     <div className="events-page">
 
       <div className="intro-banner">
